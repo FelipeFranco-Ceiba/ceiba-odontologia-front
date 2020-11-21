@@ -13,15 +13,16 @@ export class OdontologoFormularioComponent implements OnInit {
 
   odontologo: Odontologo;
   titulo: string;
+  deshabilitar: boolean;
 
   public odontologoFormulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
     private dialogRef: MatDialogRef<OdontologoFormularioComponent>,
     private readonly odontologoService: OdontologiaService,
-    @Inject(MAT_DIALOG_DATA) data: Odontologo) { 
-      this.odontologo = data;
-    }
+    @Inject(MAT_DIALOG_DATA) data: Odontologo) {
+    this.odontologo = data;
+  }
 
   ngOnInit(): void {
     this.crearFormulario();
@@ -57,20 +58,18 @@ export class OdontologoFormularioComponent implements OnInit {
     odontologoForm.fechaIngreso = this.transformarDate(odontologoForm.fechaIngreso);
     if (odontologoForm && odontologo && odontologo.idOdontologo) {
       odontologoForm.idOdontologo = odontologo.idOdontologo;
-      this.odontologoService.actualizarOdontologo(odontologoForm).subscribe(odontologo => {
-        this.odontologoService.notificarEstadoOdontologoActualizado.emit(odontologo);
-      });  
+      this.odontologoService.actualizarOdontologo(odontologoForm).subscribe(() =>
+        this.odontologoService.notificarEstadoOdontologoActualizado.emit()
+      );
     } else {
-      this.odontologoService.guardarOdontologo(odontologoForm).subscribe(odontologo => {
-        this.odontologoService.notificarEstadoOdontologoActualizado.emit(odontologo);
-      });  
+      this.odontologoService.guardarOdontologo(odontologoForm).subscribe(() =>
+        this.odontologoService.notificarEstadoOdontologoActualizado.emit()
+      );
     }
   }
-  
+
   save() {
     const odontologoForm: Odontologo = this.odontologoFormulario.value;
-    //odontologo.idOdontologo = this.odontologo.idOdontologo;
-
 
     this.actualizarOGuardar(odontologoForm, this.odontologo);
 
@@ -79,6 +78,10 @@ export class OdontologoFormularioComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  public hasError(controlName: string, errorName: string) {
+    return this.odontologoFormulario.controls[controlName].hasError(errorName);
   }
 
   displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado'];

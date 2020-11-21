@@ -11,11 +11,11 @@ export class OdontologiaService {
 
   public url = 'http://localhost:8080/odontologo/';
 
-  private _notificarEstadoOdontologoActualizado = new EventEmitter<Odontologo>();
+  private _notificarEstadoOdontologoActualizado = new EventEmitter<any>();
 
   constructor(private readonly httpCliente: HttpClient) { }
 
-  get notificarEstadoOdontologoActualizado(): EventEmitter<Odontologo> {
+  get notificarEstadoOdontologoActualizado(): EventEmitter<any> {
     return this._notificarEstadoOdontologoActualizado;
   }
 

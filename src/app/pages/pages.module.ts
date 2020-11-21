@@ -20,13 +20,15 @@ import { OdontologoFormularioComponent } from './odontologo/odontologo-formulari
 import { PagesComponent } from './pages.component';
 import { DetalleCitasComponent } from './detalle-citas/detalle-citas.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { EstadoOdontologoPipe } from './utility/pipe/estado-odontoogo.pipe';
 
 @NgModule({
   declarations: [
     PagesComponent,
     OdontologoComponent,
     OdontologoFormularioComponent,
-    DetalleCitasComponent
+    DetalleCitasComponent,
+    EstadoOdontologoPipe
   ],
   imports: [
     CommonModule,

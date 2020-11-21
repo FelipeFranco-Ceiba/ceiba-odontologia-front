@@ -35,11 +35,9 @@ export class OdontologoComponent implements OnInit {
   }
 
   editarOCrear(element?: Odontologo) {
-    console.log(element);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
     dialogConfig.data = element;
 
     this.dialog.open(OdontologoFormularioComponent, dialogConfig);
@@ -47,7 +45,7 @@ export class OdontologoComponent implements OnInit {
 
   eliminar(element: Odontologo) {
     this.odontologiaService.eliminarOdontologo(element.idOdontologo).subscribe(() => {
-      this.odontologiaService.notificarEstadoOdontologoActualizado.emit(element);
+      this.odontologiaService.notificarEstadoOdontologoActualizado.emit();
     });
   }
   displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado', 'accion'];
