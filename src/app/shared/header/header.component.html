@@ -1,0 +1,29 @@
+<mat-toolbar color=primary>
+    <mat-toolbar-row>
+        <span>OdontoSalud</span>
+
+        <mat-menu>
+            <button mat-menu-item routerLink="/login">
+                <mat-icon>exit_to_app</mat-icon>
+                Sign Out
+            </button>
+        </mat-menu>
+        <span class="example-spacer"></span>
+        <div>
+            <ul>
+                <li>
+                    <button mat-button routerLink="/" routerLinkActive="active">
+                        <mat-icon>people</mat-icon> Detalle Citas
+                    </button>
+                    <button mat-button routerLink="odontologos">
+                        <mat-icon>people</mat-icon> Odontologos
+                    </button>
+                    <button mat-button>
+                        <mat-icon>person</mat-icon> Clientes
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+
+</mat-toolbar>
