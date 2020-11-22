@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class OdontologiaService {
 
-  public url = 'http://localhost:8080/odontologo/';
+  public sufix = 'odontologo/';
 
   private _notificarEstadoOdontologoActualizado = new EventEmitter<any>();
 
@@ -20,18 +20,18 @@ export class OdontologiaService {
   }
 
   consultarOdontologos(): Observable<Odontologo[]> {
-    return this.httpCliente.get<Odontologo[]>(`${environment.endpoint}`);
+    return this.httpCliente.get<Odontologo[]>(`${environment.endpoint}${this.sufix}`);
   }
 
   actualizarOdontologo(odontologo: Odontologo): Observable<Odontologo> {
-    return this.httpCliente.put<Odontologo>(`${environment.endpoint}`, odontologo);
+    return this.httpCliente.put<Odontologo>(`${environment.endpoint}${this.sufix}`, odontologo);
   }
 
   guardarOdontologo(odontologo: Odontologo): Observable<Odontologo> {
-    return this.httpCliente.post<Odontologo>(`${environment.endpoint}`, odontologo);
+    return this.httpCliente.post<Odontologo>(`${environment.endpoint}${this.sufix}`, odontologo);
   }
 
   eliminarOdontologo(idOdontologo: number): Observable<any> {
-    return this.httpCliente.delete(`${this.url}/${idOdontologo}`);
+    return this.httpCliente.delete(`${environment.endpoint}${this.sufix}/${idOdontologo}`);
   }
 }

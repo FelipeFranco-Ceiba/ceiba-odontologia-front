@@ -5,10 +5,12 @@ import { PagesComponent } from './pages.component';
 import { OdontologoComponent } from './odontologo/odontologo.component';
 import { DetalleCitasComponent } from './detalle-citas/detalle-citas.component';
 import { OdontologoFormularioComponent } from './odontologo/odontologo-formulario/odontologo-formulario.component';
+import { AuthGuard } from '../shared/guard/auth.guard';
 const routes: Routes = [
     {
         path: 'detalleCitas',
         component: PagesComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: DetalleCitasComponent, data: { title: 'Detalle Citas' } },
             { path: 'odontologos', component: OdontologoComponent, data: { title: 'Detalle Citas' } },
