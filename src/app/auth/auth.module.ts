@@ -7,6 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AuthRoutingModule } from './auth.routing';
 import {MatButtonModule} from '@angular/material/button';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 
 
@@ -27,7 +28,8 @@ import { RegistroComponent } from './registro/registro.component';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxWebstorageModule.forRoot()
   ],
   exports: [
     LoginComponent,

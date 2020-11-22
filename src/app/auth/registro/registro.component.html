@@ -5,14 +5,19 @@
     <mat-card-content>
         <form [formGroup]="formularioLogin" autocomplete="off">
 
-            <mat-form-field >
+            <mat-form-field appearance="outline">
+                <mat-label>Usuario:</mat-label>
                 <input type="text" matInput placeholder="Usuario" [formControlName]="'usuario'" name="usuario">
+                <mat-error *ngIf="hasError('usuario', 'required')">El <strong>Usuario</strong> es requerido</mat-error>
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Clave:</mat-label>
                 <input type="password" matInput placeholder="Clave" [formControlName]="'clave'" name="clave">
+                <mat-error *ngIf="hasError('clave', 'required')">La <strong>Clave</strong> es requerida</mat-error>
             </mat-form-field>
             <button mat-raised-button color="primary" (click)="guardarLogin()" [disabled]="formularioLogin.invalid" class="btn-block">Crear</button>
+            <button mat-button routerLink="/login" class="btn-block">Login</button>
         </form>
     </mat-card-content>
 </mat-card>

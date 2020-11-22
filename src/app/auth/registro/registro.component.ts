@@ -29,4 +29,8 @@ export class RegistroComponent implements OnInit {
     this.authService.registrarUsuario(this.formularioLogin.getRawValue()).subscribe(login => console.log(login));
   }
 
+  public hasError(controlName: string, errorName: string) {
+    return this.formularioLogin.controls[controlName].hasError(errorName);
+  }
+
 }
