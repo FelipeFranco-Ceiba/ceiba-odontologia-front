@@ -1,10 +1,4 @@
-export interface detalleCita {
-    idDetalleCita?: number;
-    fechaCita: Date;
-    horaCita: number;
-    valorCita: number;
-}
-
+import { detalleCita } from './detalle-cita.model';
 export interface Odontologo {
     idOdontologo?: number;
     nombres: string;

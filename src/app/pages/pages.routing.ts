@@ -6,6 +6,8 @@ import { OdontologoComponent } from './odontologo/odontologo.component';
 import { DetalleCitasComponent } from './detalle-citas/detalle-citas.component';
 import { OdontologoFormularioComponent } from './odontologo/odontologo-formulario/odontologo-formulario.component';
 import { AuthGuard } from '../shared/guard/auth.guard';
+import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente-formulario.component';
+import { ClienteComponent } from './cliente/cliente.component';
 const routes: Routes = [
     {
         path: 'detalleCitas',
@@ -15,6 +17,8 @@ const routes: Routes = [
             { path: '', component: DetalleCitasComponent, data: { title: 'Detalle Citas' } },
             { path: 'odontologos', component: OdontologoComponent, data: { title: 'Detalle Citas' } },
             { path: 'odontologos/formulario-odontologo', component: OdontologoFormularioComponent, data: { title: 'Formuldario Odontologo' } },
+            { path: 'clientes', component: ClienteComponent, data: { title: 'Clientes' } },
+            { path: 'clientes/formulario-cliente', component: ClienteFormularioComponent, data: { title: 'Formuldario Cliente' } },
         ]
     },
 ];

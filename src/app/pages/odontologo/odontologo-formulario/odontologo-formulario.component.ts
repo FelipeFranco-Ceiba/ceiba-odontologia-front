@@ -35,8 +35,8 @@ export class OdontologoFormularioComponent implements OnInit {
       apellidos: ['', Validators.required],
       fechaIngreso: ['', Validators.required],
       estado: ['', Validators.required],
-    })
-  }
+    });
+  };
 
   cargarFormulario() {
     console.log('SII ENTRO', this.odontologo);
@@ -48,7 +48,7 @@ export class OdontologoFormularioComponent implements OnInit {
       console.log('Crear');
       this.titulo = 'Crear';
     }
-  }
+  };
 
   transformarDate(fechaIngreso: any): any {
     return new Date(fechaIngreso).toLocaleString("es-ES");
@@ -66,7 +66,7 @@ export class OdontologoFormularioComponent implements OnInit {
         this.odontologoService.notificarEstadoOdontologoActualizado.emit()
       );
     }
-  }
+  };
 
   save() {
     const odontologoForm: Odontologo = this.odontologoFormulario.value;
@@ -84,5 +84,4 @@ export class OdontologoFormularioComponent implements OnInit {
     return this.odontologoFormulario.controls[controlName].hasError(errorName);
   }
 
-  displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado'];
 }
