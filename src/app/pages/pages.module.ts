@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 import { OdontologoComponent } from './odontologo/odontologo.component';
 import { OdontologoFormularioComponent } from './odontologo/odontologo-formulario/odontologo-formulario.component';
@@ -23,6 +24,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { EstadoOdontologoPipe } from './utility/pipe/estado-odontoogo.pipe';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente-formulario.component';
+import { DetalleCitasFormularioComponent } from './detalle-citas/detalle-citas-formulario/detalle-citas-formulario.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente
     OdontologoComponent,
     OdontologoFormularioComponent,
     DetalleCitasComponent,
+    DetalleCitasFormularioComponent,
     EstadoOdontologoPipe,
     ClienteComponent,
     ClienteFormularioComponent
@@ -50,7 +53,8 @@ import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule
   ],
   exports: [
     OdontologoComponent

@@ -1,1 +1,73 @@
-<p>detalle-citas-formulario works!</p>
+<h2 mat-dialog-title>{{titulo}}</h2>
+
+<mat-dialog-content [formGroup]="detalleCitaFomulario">
+
+    <div class="col-md-3">
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Odontologo:</mat-label>
+            <mat-select [compareWith]="odontologoSeleccionado" [formControlName]="'nombresOdontologo'" name="nombresOdontologo">
+                <mat-option *ngFor="let odontologo of odontologos" [value]="odontologo">{{odontologo.nombres}} {{odontologo.apellidos}}</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="hasError('nombresOdontologo', 'required')">Los <strong>Nombres Odontologo</strong> son
+                obligatorios
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Cliente:</mat-label>
+            <mat-select [compareWith]="clienteSeleccionado" [formControlName]="'nombresCliente'" name="nombresCliente">
+                <mat-option *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="hasError('nombresCliente', 'required')">Los <strong>Nombres Odontologo</strong> son
+                obligatorios
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div class="col-md-3">
+
+    
+    </div>
+
+    <div class="col-md-3">
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Apelldios:</mat-label>
+            <input matInput placeholder="Apellidos" [formControlName]="'horaCita'" name="horaCita">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="hasError('horaCita', 'required')">Los <strong>Apellidos</strong> son obligatorios
+            </mat-error>
+        </mat-form-field>
+        <!--<mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Apelldios:</mat-label>
+            <input matInput placeholder="Apellidos" [formControlName]="'valorCita'" name="valorCita">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="hasError('valorCita', 'required')">Los <strong>Apellidos</strong> son obligatorios
+            </mat-error>
+        </mat-form-field>-->
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha de Ingreso:</mat-label>
+            <input matInput [matDatepicker]="myDatepicker" [formControlName]="'fechaCita'" name="fechaCita">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+            <mat-error *ngIf="hasError('fechaCita', 'required')">La <strong>Fecha de Ingreso</strong> es obligatoria
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div class="col-md-3">
+        
+    </div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Cerrar</button>
+    <button mat-button class="mat-raised-button mat-primary" (click)="save()"
+        [disabled]="detalleCitaFomulario.invalid">Guardar</button>
+</mat-dialog-actions>

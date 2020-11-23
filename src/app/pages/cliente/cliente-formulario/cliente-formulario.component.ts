@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-cliente-formulario',
@@ -53,16 +54,25 @@ export class ClienteFormularioComponent implements OnInit {
   }
 
   actualizar(clienteForm: Cliente, cliente: Cliente) {
-    clienteForm.idCliente = cliente.idCliente;
-    this.clienteService.actualizarCliente(clienteForm).subscribe(() =>
-      this.clienteService.notificarEstadoCliente.emit()
-    );
+    if (!cliente.detalleCitas || cliente.detalleCitas.length === 0) {
+      clienteForm.idCliente = cliente.idCliente;
+      this.clienteService.actualizarCliente(clienteForm).subscribe(() => {
+        Swal.fire('Exito', 'Se actualizo la informacion con exito', 'success');
+        this.clienteService.notificarEstadoCliente.emit();
+      }
+      );
+    } else {
+      Swal.fire('Error', 'No se puede actualizar la informacion ya que cuenta con citas registradas', 'error');
+    }
   };
 
   crear(cliente: Cliente) {
-    this.clienteService.guardarCliente(cliente).subscribe(() =>
-      this.clienteService.notificarEstadoCliente.emit()
-    );
+    this.clienteService.guardarCliente(cliente).subscribe(() => {
+      Swal.fire('Exito', 'Se actualizo la informacion con exito', 'success');
+      this.clienteService.notificarEstadoCliente.emit();
+    }, (error) => {
+      Swal.fire('Error', `Se genro un error guardando la información de ${cliente.nombres}`, 'error');
+    });
   }
 
   save() {

@@ -1,1 +1,64 @@
-<p>detalle-citas works!</p>
+<!--<app-odontologo-formulario [odontologos]="listaOdontologos"></app-odontologo-formulario>-->
+
+<mat-card>
+    <button class="crearDetalleCita" mat-stroked-button (click)="editarOCrear()">Crear</button>
+    <table mat-table [dataSource]="listaDetalleCitas" class="mat-elevation-z8">
+  
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombresOdontologo">
+        <th mat-header-cell *matHeaderCellDef> Nombres Odontologo</th>
+        <td mat-cell *matCellDef="let element"> {{element.odontologo.nombres}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="apellidosOdontologo">
+        <th mat-header-cell *matHeaderCellDef> Apellidos Odontologo </th>
+        <td mat-cell *matCellDef="let element"> {{element.odontologo.apellidos}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="nombresCliente">
+        <th mat-header-cell *matHeaderCellDef> Nombres Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.cliente.nombres}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="apellidosCliente">
+        <th mat-header-cell *matHeaderCellDef> Apellido Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.cliente.apellidos}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="horaCita">
+        <th mat-header-cell *matHeaderCellDef> Hora Cita </th>
+        <td mat-cell *matCellDef="let element"> {{element.horaCita}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaCita">
+        <th mat-header-cell *matHeaderCellDef> Fecha Cita </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaCita  | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="valorCita">
+        <th mat-header-cell *matHeaderCellDef> Valor Cita </th>
+        <td mat-cell *matCellDef="let element"> {{element.valorCita | currency:'$':'symbol'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef> Acción </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editarOCrear(element)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="eliminar(element)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+  </mat-card>

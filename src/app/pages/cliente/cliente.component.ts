@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-cliente',
@@ -42,9 +43,15 @@ export class ClienteComponent implements OnInit {
   }
 
   eliminar(element: Cliente) {
-    this.clienteService.eliminarCliente(element.idCliente).subscribe(() => {
-      this.clienteService.notificarEstadoCliente.emit();
-    });
+    console.log(element.detalleCitas.length); 
+    if (!element.detalleCitas || element.detalleCitas.length === 0) {
+      this.clienteService.eliminarCliente(element.idCliente).subscribe(() => {
+        Swal.fire('Exito', 'se elimino correctamete!', 'success'); 
+        this.clienteService.notificarEstadoCliente.emit();
+      });
+    } else {
+      Swal.fire('Error', 'No se puede eliminar el cliente ya que tiene citas creadas', 'error');
+    }
   }
 
   displayedColumns: string[] = ['nombres', 'apellidos', 'accion'];
