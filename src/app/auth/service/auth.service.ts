@@ -31,7 +31,7 @@ export class AuthService {
     }))
   }
 
-  get usuarioLogueado(): Usuario {
+  get usuarioLogueado(): string {
     return this.localStorage.retrieve('usuario');
   }
 }

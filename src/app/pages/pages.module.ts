@@ -21,6 +21,8 @@ import { PagesComponent } from './pages.component';
 import { DetalleCitasComponent } from './detalle-citas/detalle-citas.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { EstadoOdontologoPipe } from './utility/pipe/estado-odontoogo.pipe';
+import { ClienteComponent } from './cliente/cliente.component';
+import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente-formulario.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EstadoOdontologoPipe } from './utility/pipe/estado-odontoogo.pipe';
     OdontologoComponent,
     OdontologoFormularioComponent,
     DetalleCitasComponent,
-    EstadoOdontologoPipe
+    EstadoOdontologoPipe,
+    ClienteComponent,
+    ClienteFormularioComponent
   ],
   imports: [
     CommonModule,
