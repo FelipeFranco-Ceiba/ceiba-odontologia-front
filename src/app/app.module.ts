@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -33,7 +34,8 @@ import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component'
     MatIconModule,
     BrowserAnimationsModule,
     MatDividerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -13,6 +14,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { AuthService } from './service/auth.service';
 
 
 @NgModule({
@@ -29,11 +31,13 @@ import { RegistroComponent } from './registro/registro.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    HttpClientModule
   ],
   exports: [
     LoginComponent,
     RegistroComponent
-  ]
+  ],
+  providers: []
 })
 export class AuthModule { }
