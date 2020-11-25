@@ -1,19 +1,18 @@
-import { getTestBed, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LocalStorageService } from 'ngx-webstorage';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Usuario } from 'src/app/models/usuario.model';
-import { ClienteService } from 'src/app/pages/services/cliente.service';
+import { environment } from 'src/environments/environment';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, HttpClientModule],
       providers: [AuthService, LocalStorageService]
     });
 
@@ -26,21 +25,21 @@ fdescribe('AuthService', () => {
     httpMock.verify(); //Verifies that no requests are outstanding.
   });
 
-  fit('should be created', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('crear usuario ', () => {
+  it('crear usuario ', () => {
     const usuario = {idLogin: 1, usuario: 'Felipe', clave: 'Franco'};
-    const request = httpMock.expectOne('http://localhost:8080/login/');
 
     service.registrarUsuario(usuario).subscribe(
       login => expect(login).toEqual(usuario)
     );
 
+    const request = httpMock.expectOne(environment.endpoint + 'login/');
     expect(request.request.method).toEqual('POST');
 
     request.flush(usuario);
-  })
+  });
 
 });

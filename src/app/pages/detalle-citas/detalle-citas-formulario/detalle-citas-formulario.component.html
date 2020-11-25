@@ -7,7 +7,7 @@
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Odontologo:</mat-label>
             <mat-select [compareWith]="odontologoSeleccionado" [formControlName]="'nombresOdontologo'" name="nombresOdontologo">
-                <mat-option *ngFor="let odontologo of odontologos" [value]="odontologo">{{odontologo.nombres}} {{odontologo.apellidos}}</mat-option>
+                <mat-option matInput *ngFor="let odontologo of odontologos" [value]="odontologo">{{odontologo.nombres}} {{odontologo.apellidos}}</mat-option>
             </mat-select>
             <mat-icon matSuffix>person</mat-icon>
             <mat-error *ngIf="hasError('nombresOdontologo', 'required')">Los <strong>Nombres Odontologo</strong> son
@@ -18,7 +18,7 @@
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Cliente:</mat-label>
             <mat-select [compareWith]="clienteSeleccionado" [formControlName]="'nombresCliente'" name="nombresCliente">
-                <mat-option *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
+                <mat-option matInput *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
             </mat-select>
             <mat-icon matSuffix>person</mat-icon>
             <mat-error *ngIf="hasError('nombresCliente', 'required')">Los <strong>Nombres Odontologo</strong> son
