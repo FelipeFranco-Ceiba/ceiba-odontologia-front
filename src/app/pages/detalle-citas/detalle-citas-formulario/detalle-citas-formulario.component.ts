@@ -25,14 +25,14 @@ export class DetalleCitasFormularioComponent implements OnInit {
   public detalleCitaFomulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
-    private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
-    private readonly detalleCitaService: DetalleCitaService,
-    private readonly odontologoService: OdontologiaService,
-    private readonly clienteService: ClienteService,
-    private readonly authService: AuthService,
-    @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
+              private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
+              private readonly detalleCitaService: DetalleCitaService,
+              private readonly odontologoService: OdontologiaService,
+              private readonly clienteService: ClienteService,
+              private readonly authService: AuthService,
+              @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
       this.detalleCita = data;
-      console.log('SI LLEGO INFO', this.detalleCita)
+      console.log('SI LLEGO INFO', this.detalleCita);
     }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class DetalleCitasFormularioComponent implements OnInit {
     this.cargarCliente();
   }
 
-  crearFormulario() {
+  crearFormulario(): void {
     this.detalleCitaFomulario = this.fb.group({
       nombresOdontologo: ['', Validators.required],
       nombresCliente: ['', Validators.required],
@@ -50,28 +50,27 @@ export class DetalleCitasFormularioComponent implements OnInit {
       valorCita: ['35000', [Validators.required]],
       fechaCita: ['', Validators.required],
     });
-  };
+  }
 
-  cargarFormulario() {
+  cargarFormulario(): void {
     console.log('SII ENTRO', this.detalleCita);
     if (this.detalleCita) {
       this.titulo = 'Editar';
-      this.detalleCitaFomulario.get('nombresOdontologo').setValue(this.detalleCita.odontologo); 
-      this.detalleCitaFomulario.get('nombresCliente').setValue(this.detalleCita.cliente); 
+      this.detalleCitaFomulario.get('nombresOdontologo').setValue(this.detalleCita.odontologo);
+      this.detalleCitaFomulario.get('nombresCliente').setValue(this.detalleCita.cliente);
       this.detalleCitaFomulario.patchValue(this.detalleCita);
     } else {
       this.titulo = 'Crear';
     }
-  };
-
-  cargarOdontologos() {
-    this.odontologoService.consultarOdontologos().subscribe(listaOdontologo => 
-      this.odontologos = listaOdontologo);
   }
 
-  cargarCliente() {
-    this.clienteService.consultarClientes().subscribe(listaCliente => 
-      this.clientes = listaCliente);
+  cargarOdontologos(): void {
+    this.odontologoService.consultarOdontologos()
+    .subscribe(listaOdontologo => this.odontologos = listaOdontologo);
+  }
+
+  cargarCliente(): void {
+    this.clienteService.consultarClientes().subscribe(listaCliente => this.clientes = listaCliente);
   }
 
   odontologoSeleccionado(o2: Odontologo, o1: Odontologo): boolean {
@@ -80,9 +79,9 @@ export class DetalleCitasFormularioComponent implements OnInit {
 
   clienteSeleccionado(o2: Cliente, o1: Cliente): boolean {
     return o1.idCliente === o2.idCliente ? true : false;
-  };
+  }
 
-  actualizarOGuardar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita?: InformacionCompletaDetalleCita) {
+  actualizarOGuardar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita?: InformacionCompletaDetalleCita): void {
     if (detalleCitaForm && detalleCita && detalleCita.idDetalleCita) {
       this.actualizar(detalleCitaForm, detalleCita);
     } else {
@@ -91,36 +90,36 @@ export class DetalleCitasFormularioComponent implements OnInit {
   }
 
   transformarDate(fechaIngreso: any): any {
-    return new Date(fechaIngreso).toLocaleString("es-ES");
+    return new Date(fechaIngreso).toLocaleString('es-ES');
 }
   
-  actualizar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita: InformacionCompletaDetalleCita) {
+  actualizar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita: InformacionCompletaDetalleCita): void {
     detalleCitaForm.idDetalleCita = detalleCita.idDetalleCita;
     detalleCitaForm.login = detalleCita.login;
-    this.detalleCitaService.actualizarDetalleCita(TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCitaForm)).subscribe(() =>
-      this.detalleCitaService.notificarEstadoDetalleCita.emit()
-    );
-  };
-
-  crear(detalleCita: InformacionCompletaDetalleCita) {
-    detalleCita.login = this.authService.getUsuarioLogueado;
-    this.detalleCitaService.guardarDetalleCita(TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCita)).subscribe(() =>
-      this.detalleCitaService.notificarEstadoDetalleCita.emit()
-    )
+    this.detalleCitaService.actualizarDetalleCita(
+      TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCitaForm)
+      ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
   }
 
-  save() {
+  crear(detalleCita: InformacionCompletaDetalleCita): void {
+    detalleCita.login = this.authService.getUsuarioLogueado;
+    this.detalleCitaService.guardarDetalleCita(
+      TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCita)
+      ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
+  }
+
+  save(): void {
     console.log('POR QUE ESTA MALA', this.detalleCita);
     const detalleCitaForm = this.detalleCitaFomulario.getRawValue();
     this.actualizarOGuardar(detalleCitaForm, this.detalleCita);
     this.dialogRef.close(this.detalleCita);
-  };
+  }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
-  };
+  }
 
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.detalleCitaFomulario.controls[controlName].hasError(errorName);
   }
 }

@@ -11,6 +11,7 @@ import { DetalleCitasFormularioComponent } from './detalle-citas-formulario/deta
 })
 export class DetalleCitasComponent implements OnInit {
 
+  displayedColumns: string[] = ['nombresOdontologo', 'apellidosOdontologo', 'nombresCliente', 'apellidosCliente', 'horaCita', 'fechaCita', 'valorCita', 'accion'];
   listaDetalleCitas: InformacionCompletaDetalleCita[];
 
   constructor(private readonly detalleCitaService: DetalleCitaService,
@@ -21,19 +22,18 @@ export class DetalleCitasComponent implements OnInit {
     this.actualizarEstado();
   }
 
-  cargarInformacionDetalleCita() {
+  cargarInformacionDetalleCita(): void {
     this.detalleCitaService.consultarDetalleCita().subscribe(detalleCitas => {
       console.log(detalleCitas);
       this.listaDetalleCitas = detalleCitas;
     });
   }
 
-  actualizarEstado() {
+  actualizarEstado(): void {
     this.detalleCitaService.notificarEstadoDetalleCita.subscribe(() => this.cargarInformacionDetalleCita());
   }
 
-  editarOCrear(element?: InformacionCompletaDetalleCita) {
-    console.log('MIRAAAA!', element);
+  editarOCrear(element?: InformacionCompletaDetalleCita): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -42,9 +42,6 @@ export class DetalleCitasComponent implements OnInit {
     this.dialog.open(DetalleCitasFormularioComponent, dialogConfig);
   }
 
-  eliminar(element: InformacionCompletaDetalleCita) {
-    
+  eliminar(element: InformacionCompletaDetalleCita): void {
   }
-
-  displayedColumns: string[] = ['nombresOdontologo', 'apellidosOdontologo', 'nombresCliente', 'apellidosCliente', 'horaCita', 'fechaCita', 'valorCita', 'accion'];
 }
