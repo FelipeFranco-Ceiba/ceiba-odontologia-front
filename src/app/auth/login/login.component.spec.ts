@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { AuthService } from '../service/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -42,10 +41,10 @@ describe('LoginComponent', () => {
   });
 
   it('form invalis field empty', () => {
-    let usuario = component.formularioLogin.controls['usuario'];
-    let clave = component.formularioLogin.controls['clave'];
-    usuario.setValue("");
-    clave.setValue("");
+    const usuario = component.formularioLogin.controls['usuario'];
+    const clave = component.formularioLogin.controls['clave'];
+    usuario.setValue('');
+    clave.setValue('');
     expect(usuario.hasError('required')).toBeTruthy();
     expect(clave.hasError('required')).toBeTruthy();
   });

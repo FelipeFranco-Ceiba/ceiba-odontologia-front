@@ -1,8 +1,8 @@
-import { detalleCita } from './detalle-cita.model';
+import { DetalleCita } from './detalle-cita.model';
 
 export interface Cliente {
-    idCliente?: number,
+    idCliente?: number;
     nombres: string;
     apellidos: string;
-    detalleCitas?: detalleCita[] 
+    detalleCitas?: DetalleCita[];
 }

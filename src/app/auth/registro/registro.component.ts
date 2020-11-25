@@ -12,24 +12,24 @@ export class RegistroComponent implements OnInit {
   public formularioLogin: FormGroup;
 
   constructor(private readonly authService: AuthService,
-    private readonly fb: FormBuilder) { }
+              private readonly fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.crearFormulario();
-  }
+  };
 
-  crearFormulario() {
+  crearFormulario(): void {
     this.formularioLogin = this.fb.group({
       usuario: ['', Validators.required],
       clave: ['', Validators.required]
-    })
-  }
+    });
+  };
 
-  guardarLogin() {
+  guardarLogin(): void {
     this.authService.registrarUsuario(this.formularioLogin.getRawValue()).subscribe(login => console.log(login));
-  }
+  };
 
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.formularioLogin.controls[controlName].hasError(errorName);
   }
 

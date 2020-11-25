@@ -2,7 +2,7 @@ import { Cliente } from './cliente.model';
 import { Odontologo } from './odontologo.model';
 import { Usuario } from './usuario.model';
 
-export interface detalleCita {
+export interface DetalleCita {
     idDetalleCita?: number;
     fechaCita: Date;
     horaCita: number;
@@ -15,6 +15,6 @@ export interface InformacionCompletaDetalleCita {
     horaCita: number;
     valorCita: number;
     odontologo: Odontologo;
-    cliente: Cliente,
-    login: Usuario
+    cliente: Cliente;
+    login: Usuario;
 }

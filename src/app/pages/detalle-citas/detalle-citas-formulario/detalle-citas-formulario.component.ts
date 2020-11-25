@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { Cliente } from 'src/app/models/cliente.model';
-import { detalleCita, InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
+import { DetalleCita, InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
 import { Odontologo } from 'src/app/models/odontologo.model';
 import { ClienteService } from '../../services/cliente.service';
 import { DetalleCitaService } from '../../services/detalle-cita.service';

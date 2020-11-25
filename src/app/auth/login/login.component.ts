@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
     this.crearFormulario();
   }
 
-  crearFormulario() {
+  crearFormulario(): void {
     this.formularioLogin = this.fb.group({
       usuario: ['', Validators.required],
       clave: ['', Validators.required]
     });
   }
 
-  login() {
+  login(): void {
     this.authService.login(this.formularioLogin.getRawValue()).subscribe(login => {
       this.router.navigateByUrl('/detalleCitas');
     }, (error) => {
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.formularioLogin.controls[controlName].hasError(errorName);
   }
 

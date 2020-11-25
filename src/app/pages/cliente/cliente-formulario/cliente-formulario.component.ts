@@ -18,10 +18,10 @@ export class ClienteFormularioComponent implements OnInit {
   public clienteFormulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
-    private dialogRef: MatDialogRef<ClienteFormularioComponent>,
-    private readonly clienteService: ClienteService,
-    @Inject(MAT_DIALOG_DATA) data: Cliente) {
-    this.cliente = data;
+              private dialogRef: MatDialogRef<ClienteFormularioComponent>,
+              private readonly clienteService: ClienteService,
+              @Inject(MAT_DIALOG_DATA) data: Cliente) {
+              this.cliente = data;
   }
 
   ngOnInit(): void {
@@ -29,23 +29,23 @@ export class ClienteFormularioComponent implements OnInit {
     this.cargarFormulario();
   }
 
-  crearFormulario() {
+  crearFormulario(): void {
     this.clienteFormulario = this.fb.group({
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required]
     });
-  };
+  }
 
-  cargarFormulario() {
+  cargarFormulario(): void {
     if (this.cliente) {
       this.titulo = 'Editar';
       this.clienteFormulario.patchValue(this.cliente);
     } else {
       this.titulo = 'Crear';
     }
-  };
+  }
 
-  actualizarOGuardar(clienteForm: Cliente, cliente?: Cliente) {
+  actualizarOGuardar(clienteForm: Cliente, cliente?: Cliente): void {
     if (clienteForm && cliente && cliente.idCliente) {
       this.actualizar(clienteForm, cliente);
     } else {
@@ -53,7 +53,7 @@ export class ClienteFormularioComponent implements OnInit {
     }
   }
 
-  actualizar(clienteForm: Cliente, cliente: Cliente) {
+  actualizar(clienteForm: Cliente, cliente: Cliente): void {
     if (!cliente.detalleCitas || cliente.detalleCitas.length === 0) {
       clienteForm.idCliente = cliente.idCliente;
       this.clienteService.actualizarCliente(clienteForm).subscribe(() => {
@@ -64,9 +64,9 @@ export class ClienteFormularioComponent implements OnInit {
     } else {
       Swal.fire('Error', 'No se puede actualizar la informacion ya que cuenta con citas registradas', 'error');
     }
-  };
+  }
 
-  crear(cliente: Cliente) {
+  crear(cliente: Cliente): void {
     this.clienteService.guardarCliente(cliente).subscribe(() => {
       Swal.fire('Exito', 'Se actualizo la informacion con exito', 'success');
       this.clienteService.notificarEstadoCliente.emit();
@@ -75,19 +75,19 @@ export class ClienteFormularioComponent implements OnInit {
     });
   }
 
-  save() {
+  save(): void {
     const clienteForm: Cliente = this.clienteFormulario.getRawValue();
     this.actualizarOGuardar(clienteForm, this.cliente);
 
     this.dialogRef.close(clienteForm);
-  };
+  }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
-  };
+  }
 
   public hasError(controlName: string, errorName: string) {
     return this.clienteFormulario.controls[controlName].hasError(errorName);
-  };
+  }
 
 }

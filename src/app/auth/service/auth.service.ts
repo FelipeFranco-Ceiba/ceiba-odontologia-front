@@ -24,12 +24,12 @@ export class AuthService {
   login(login: Usuario): Observable<boolean> {
     const headers = {'Content-Type': 'application/json'};
     return this.httpCliente.post<Usuario>(`${environment.endpoint}${this.sufix}inicio`, login, { headers })
-    .pipe(map((login: Usuario) => {
-      this.localStorage.store('usuario', login.usuario);
-      this.getUsuarioLogueado = login;
+    .pipe(map((usuario: Usuario) => {
+      this.localStorage.store('usuario', usuario.usuario);
+      this.getUsuarioLogueado = usuario;
       return true;
-    }))
-  }
+    }));
+  };
 
   get usuarioLogueado(): string {
     return this.localStorage.retrieve('usuario');
