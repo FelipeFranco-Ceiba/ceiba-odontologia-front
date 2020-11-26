@@ -16,18 +16,18 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.crearFormulario();
-  };
+  }
 
   crearFormulario(): void {
     this.formularioLogin = this.fb.group({
       usuario: ['', Validators.required],
       clave: ['', Validators.required]
     });
-  };
+  }
 
   guardarLogin(): void {
     this.authService.registrarUsuario(this.formularioLogin.getRawValue()).subscribe(login => console.log(login));
-  };
+  }
 
   public hasError(controlName: string, errorName: string): boolean {
     return this.formularioLogin.controls[controlName].hasError(errorName);

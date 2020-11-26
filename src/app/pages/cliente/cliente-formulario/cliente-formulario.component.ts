@@ -86,7 +86,7 @@ export class ClienteFormularioComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.clienteFormulario.controls[controlName].hasError(errorName);
   }
 

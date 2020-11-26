@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { OdontologiaService } from '../../services/odontologia.service';
@@ -15,8 +14,8 @@ describe('OdontologoFormularioComponent', () => {
   let component: OdontologoFormularioComponent;
   let fixture: ComponentFixture<OdontologoFormularioComponent>;
   let dialogSpy: jasmine.Spy;
-  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
-    dialogRefSpyObj.componentInstance = { body: '' }; // attach componentInstance to the spy object...
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' }; 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,7 +43,7 @@ describe('OdontologoFormularioComponent', () => {
     component = fixture.componentInstance;
     component.ngOnInit();
     fixture.detectChanges();
-    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
+    dialogSpy = spyOn(TestBed.inject(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   });
 
   it('should create', () => {

@@ -18,9 +18,9 @@ export class OdontologoFormularioComponent implements OnInit {
   public odontologoFormulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
-    private dialogRef: MatDialogRef<OdontologoFormularioComponent>,
-    private readonly odontologoService: OdontologiaService,
-    @Inject(MAT_DIALOG_DATA) data: Odontologo) {
+              private dialogRef: MatDialogRef<OdontologoFormularioComponent>,
+              private readonly odontologoService: OdontologiaService,
+              @Inject(MAT_DIALOG_DATA) data: Odontologo) {
     this.odontologo = data;
   }
 
@@ -29,16 +29,16 @@ export class OdontologoFormularioComponent implements OnInit {
     this.cargarFormulario();
   }
 
-  crearFormulario() {
+  crearFormulario(): void {
     this.odontologoFormulario = this.fb.group({
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       fechaIngreso: ['', Validators.required],
       estado: ['', Validators.required],
     });
-  };
+  }
 
-  cargarFormulario() {
+  cargarFormulario(): void {
     console.log('SII ENTRO', this.odontologo);
     if (this.odontologo) {
       console.log('Editar');
@@ -48,13 +48,13 @@ export class OdontologoFormularioComponent implements OnInit {
       console.log('Crear');
       this.titulo = 'Crear';
     }
-  };
-
-  transformarDate(fechaIngreso: any): any {
-    return new Date(fechaIngreso).toLocaleString("es-ES");
   }
 
-  actualizarOGuardar(odontologoForm: Odontologo, odontologo?: Odontologo) {
+  transformarDate(fechaIngreso: any): any {
+    return new Date(fechaIngreso).toLocaleString('es-ES');
+  }
+
+  actualizarOGuardar(odontologoForm: Odontologo, odontologo?: Odontologo): void {
     odontologoForm.fechaIngreso = this.transformarDate(odontologoForm.fechaIngreso);
     if (odontologoForm && odontologo && odontologo.idOdontologo) {
       odontologoForm.idOdontologo = odontologo.idOdontologo;
@@ -66,9 +66,9 @@ export class OdontologoFormularioComponent implements OnInit {
         this.odontologoService.notificarEstadoOdontologoActualizado.emit()
       );
     }
-  };
+  }
 
-  save() {
+  save(): void {
     const odontologoForm: Odontologo = this.odontologoFormulario.value;
 
     this.actualizarOGuardar(odontologoForm, this.odontologo);
@@ -76,11 +76,11 @@ export class OdontologoFormularioComponent implements OnInit {
     this.dialogRef.close(odontologoForm);
   }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
   }
 
-  public hasError(controlName: string, errorName: string) {
+  public hasError(controlName: string, errorName: string): boolean {
     return this.odontologoFormulario.controls[controlName].hasError(errorName);
   }
 

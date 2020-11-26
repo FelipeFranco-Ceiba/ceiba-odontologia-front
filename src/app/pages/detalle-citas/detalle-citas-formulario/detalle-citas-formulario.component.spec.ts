@@ -15,8 +15,8 @@ describe('DetalleCitasFormularioComponent', () => {
   let component: DetalleCitasFormularioComponent;
   let fixture: ComponentFixture<DetalleCitasFormularioComponent>;
   let dialogSpy: jasmine.Spy;
-  let dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
-    dialogRefSpyObj.componentInstance = { body: '' }; // attach componentInstance to the spy object...
+  const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
+  dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,7 +45,7 @@ describe('DetalleCitasFormularioComponent', () => {
     component = fixture.componentInstance;
     component.ngOnInit();
     fixture.detectChanges();
-    dialogSpy = spyOn(TestBed.get(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
+    dialogSpy = spyOn(TestBed.inject(MatDialog), 'open').and.returnValue(dialogRefSpyObj);
   });
 
   it('should create', () => {

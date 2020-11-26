@@ -12,6 +12,7 @@ import { OdontologoFormularioComponent } from './odontologo-formulario/odontolog
 })
 export class OdontologoComponent implements OnInit {
 
+  displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado', 'accion'];
   listaOdontologos: Odontologo[];
 
   constructor(private readonly odontologiaService: OdontologiaService,
@@ -23,18 +24,18 @@ export class OdontologoComponent implements OnInit {
 
   }
 
-  cargarInformacionOdontologo() {
+  cargarInformacionOdontologo(): void {
     this.odontologiaService.consultarOdontologos().subscribe(odontologos => {
       console.log(odontologos);
       this.listaOdontologos = odontologos;
     });
   }
 
-  actualizarEstado() {
+  actualizarEstado(): void {
     this.odontologiaService.notificarEstadoOdontologoActualizado.subscribe(() => this.cargarInformacionOdontologo());
   }
 
-  editarOCrear(element?: Odontologo) {
+  editarOCrear(element?: Odontologo): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -43,10 +44,9 @@ export class OdontologoComponent implements OnInit {
     this.dialog.open(OdontologoFormularioComponent, dialogConfig);
   }
 
-  eliminar(element: Odontologo) {
+  eliminar(element: Odontologo): void {
     this.odontologiaService.eliminarOdontologo(element.idOdontologo).subscribe(() => {
       this.odontologiaService.notificarEstadoOdontologoActualizado.emit();
     });
   }
-  displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado', 'accion'];
 }

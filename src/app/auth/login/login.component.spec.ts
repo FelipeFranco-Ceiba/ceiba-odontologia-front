@@ -12,6 +12,8 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
+  const REQUIRED = 'required';
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
@@ -45,8 +47,8 @@ describe('LoginComponent', () => {
     const clave = component.formularioLogin.controls['clave'];
     usuario.setValue('');
     clave.setValue('');
-    expect(usuario.hasError('required')).toBeTruthy();
-    expect(clave.hasError('required')).toBeTruthy();
+    expect(usuario.hasError(REQUIRED)).toBeTruthy();
+    expect(clave.hasError(REQUIRED)).toBeTruthy();
   });
 
 

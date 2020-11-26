@@ -91,8 +91,8 @@ export class DetalleCitasFormularioComponent implements OnInit {
 
   transformarDate(fechaIngreso: any): any {
     return new Date(fechaIngreso).toLocaleString('es-ES');
-}
-  
+  }
+
   actualizar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita: InformacionCompletaDetalleCita): void {
     detalleCitaForm.idDetalleCita = detalleCita.idDetalleCita;
     detalleCitaForm.login = detalleCita.login;

@@ -14,11 +14,31 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: '', component: DetalleCitasComponent, data: { title: 'Detalle Citas' } },
-            { path: 'odontologos', component: OdontologoComponent, data: { title: 'Detalle Citas' } },
-            { path: 'odontologos/formulario-odontologo', component: OdontologoFormularioComponent, data: { title: 'Formuldario Odontologo' } },
-            { path: 'clientes', component: ClienteComponent, data: { title: 'Clientes' } },
-            { path: 'clientes/formulario-cliente', component: ClienteFormularioComponent, data: { title: 'Formuldario Cliente' } },
+            {
+                path: '',
+                component: DetalleCitasComponent,
+                data: { title: 'Detalle Citas' } 
+            },
+            {
+                path: 'odontologos',
+                component: OdontologoComponent,
+                data: { title: 'Detalle Citas' }
+            },
+            {
+                path: 'odontologos/formulario-odontologo',
+                component: OdontologoFormularioComponent,
+                data: { title: 'Formuldario Odontologo' }
+            },
+            {
+                path: 'clientes',
+                component: ClienteComponent,
+                data: { title: 'Clientes' }
+            },
+            {
+                path: 'clientes/formulario-cliente',
+                component: ClienteFormularioComponent,
+                data: { title: 'Formuldario Cliente' }
+            },
         ]
     },
 ];

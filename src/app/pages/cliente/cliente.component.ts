@@ -12,6 +12,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class ClienteComponent implements OnInit {
 
+  displayedColumns: string[] = ['nombres', 'apellidos', 'accion'];
   public listaClientes: Cliente[];
 
   constructor(private readonly clienteService: ClienteService,
@@ -22,18 +23,18 @@ export class ClienteComponent implements OnInit {
     this.actualizarEstado();
   }
 
-  cargarInformacionCliente() {
+  cargarInformacionCliente(): void {
     this.clienteService.consultarClientes().subscribe(clientes => {
       console.log(clientes);
       this.listaClientes = clientes;
     });
   }
 
-  actualizarEstado() {
+  actualizarEstado(): void {
     this.clienteService.notificarEstadoCliente.subscribe(() => this.cargarInformacionCliente());
   }
 
-  editarOCrear(element?: Cliente) {
+  editarOCrear(element?: Cliente): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -42,17 +43,15 @@ export class ClienteComponent implements OnInit {
     this.dialog.open(ClienteFormularioComponent, dialogConfig);
   }
 
-  eliminar(element: Cliente) {
-    console.log(element.detalleCitas.length); 
+  eliminar(element: Cliente): void {
+    console.log(element.detalleCitas.length);
     if (!element.detalleCitas || element.detalleCitas.length === 0) {
       this.clienteService.eliminarCliente(element.idCliente).subscribe(() => {
-        Swal.fire('Exito', 'se elimino correctamete!', 'success'); 
+        Swal.fire('Exito', 'se elimino correctamete!', 'success');
         this.clienteService.notificarEstadoCliente.emit();
       });
     } else {
       Swal.fire('Error', 'No se puede eliminar el cliente ya que tiene citas creadas', 'error');
     }
   }
-
-  displayedColumns: string[] = ['nombres', 'apellidos', 'accion'];
 }

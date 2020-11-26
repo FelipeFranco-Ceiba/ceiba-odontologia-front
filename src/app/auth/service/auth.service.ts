@@ -29,7 +29,7 @@ export class AuthService {
       this.getUsuarioLogueado = usuario;
       return true;
     }));
-  };
+  }
 
   get usuarioLogueado(): string {
     return this.localStorage.retrieve('usuario');
