@@ -13,6 +13,8 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
 
   const REQUIRED = 'required';
+  const USUARIO = 'usuario';
+  const CLAVE = 'clave';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -43,8 +45,8 @@ describe('LoginComponent', () => {
   });
 
   it('form invalis field empty', () => {
-    const usuario = component.formularioLogin.controls['usuario'];
-    const clave = component.formularioLogin.controls['clave'];
+    const usuario = component.formularioLogin.controls[USUARIO];
+    const clave = component.formularioLogin.controls[CLAVE];
     usuario.setValue('');
     clave.setValue('');
     expect(usuario.hasError(REQUIRED)).toBeTruthy();

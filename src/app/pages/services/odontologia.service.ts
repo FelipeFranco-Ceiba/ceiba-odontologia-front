@@ -11,12 +11,12 @@ export class OdontologiaService {
 
   public sufix = 'odontologo/';
 
-  private _notificarEstadoOdontologoActualizado = new EventEmitter<any>();
+  private notificarEstadoOdontologo = new EventEmitter<any>();
 
   constructor(private readonly httpCliente: HttpClient) { }
 
   get notificarEstadoOdontologoActualizado(): EventEmitter<any> {
-    return this._notificarEstadoOdontologoActualizado;
+    return this.notificarEstadoOdontologo;
   }
 
   consultarOdontologos(): Observable<Odontologo[]> {

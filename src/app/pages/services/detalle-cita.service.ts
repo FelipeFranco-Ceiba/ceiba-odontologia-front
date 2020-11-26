@@ -11,12 +11,12 @@ export class DetalleCitaService {
 
   public sufix = 'detalleCita';
 
-  private _notificarEstadoDetalleCita = new EventEmitter<any>();
+  private notificarEstado = new EventEmitter<any>();
 
   constructor(private readonly httpCliente: HttpClient) { }
 
   get notificarEstadoDetalleCita(): EventEmitter<any> {
-    return this._notificarEstadoDetalleCita;
+    return this.notificarEstado;
   }
 
   consultarDetalleCita(): Observable<InformacionCompletaDetalleCita[]> {

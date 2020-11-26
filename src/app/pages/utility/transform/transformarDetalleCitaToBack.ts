@@ -3,7 +3,7 @@ import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.mode
 export class TransformDetalleCita {
 
     static transformarDate(fechaIngreso: any): any {
-        return new Date(fechaIngreso).toLocaleString("es-ES");
+        return new Date(fechaIngreso).toLocaleString('es-ES');
     }
 
     static transformDetalleCItaToDetalleCitaBack(detalleCita): InformacionCompletaDetalleCita {
@@ -18,6 +18,6 @@ export class TransformDetalleCita {
             odontologo: detalleCita.nombresOdontologo,
             cliente: detalleCita.nombresCliente,
             login: detalleCita.login
-        }
+        };
     }
 }

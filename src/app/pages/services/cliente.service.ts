@@ -11,13 +11,13 @@ export class ClienteService {
 
   public sufix = 'cliente/';
 
-  private _NotificarEstadoCliente = new EventEmitter<any>();
+  private notificarEstado = new EventEmitter<any>();
 
   constructor(private readonly httpCliente: HttpClient) { }
 
 
   get notificarEstadoCliente(): EventEmitter<any> {
-    return this._NotificarEstadoCliente;
+    return this.notificarEstado;
   }
 
   consultarClientes(): Observable<Cliente[]> {

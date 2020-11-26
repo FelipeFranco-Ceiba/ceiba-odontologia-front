@@ -8,7 +8,7 @@ describe('OdontologiaService', () => {
   let service: OdontologiaService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, HttpClientModule],

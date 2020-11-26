@@ -15,7 +15,7 @@ describe('OdontologoFormularioComponent', () => {
   let fixture: ComponentFixture<OdontologoFormularioComponent>;
   let dialogSpy: jasmine.Spy;
   const dialogRefSpyObj = jasmine.createSpyObj({ afterClosed : of({}), close: null });
-  dialogRefSpyObj.componentInstance = { body: '' }; 
+  dialogRefSpyObj.componentInstance = { body: '' };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -17,7 +17,7 @@ const routes: Routes = [
             {
                 path: '',
                 component: DetalleCitasComponent,
-                data: { title: 'Detalle Citas' } 
+                data: { title: 'Detalle Citas' }
             },
             {
                 path: 'odontologos',
