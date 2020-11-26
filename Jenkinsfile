@@ -6,8 +6,8 @@ pipeline {
 
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
-    	buildDiscarder(logRotator(numToKeepStr: '3'))
- 	disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '3'))
+    disableConcurrentBuilds()
   }
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
@@ -21,19 +21,19 @@ stages{
   //Aquí comienzan los “items” del Pipeline
   stage('Checkout'){
   	steps{
-        echo "------------>Checkout<------------"
-        checkout([
-            $class: 'GitSCM',
-            branches: [[name: '*/master']],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [],
-            gitTool: 'Default',
-            submoduleCfg: [],
-            userRemoteConfigs: [[
-            credentialsId: 'GitHub_FelipeFranco-Ceiba',
-            url:'https://github.com/FelipeFranco-Ceiba/ceiba-odontologia-front.git'
-            ]]
-        ])
+      echo "------------>Checkout<------------"
+      checkout([
+        $class: 'GitSCM',
+        branches: [[name: '*/master']],
+        doGenerateSubmoduleConfigurations: false,
+        extensions: [],
+        gitTool: 'Default',
+        submoduleCfg: [],
+        userRemoteConfigs: [[
+          credentialsId: 'GitHub_FelipeFranco-Ceiba',
+          url:'https://github.com/FelipeFranco-Ceiba/ceiba-odontologia-front.git'
+        ]]
+      ])
     }
   }
 
@@ -41,8 +41,8 @@ stages{
       steps{
         echo "------------>Compile<------------"
         withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
-                    sh 'npm install'
-		}
+          sh 'npm install'
+		    }
       }
     }
 
@@ -61,13 +61,13 @@ stages{
     }
 
 	stage('Static Code Analysis') {
-            steps{
-                echo '------------>Análisis de código estático<------------'
-                withSonarQubeEnv('Sonar') {
-                    sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-                }
-            }
-        }
+    steps{
+      echo '------------>Análisis de código estático<------------'
+      withSonarQubeEnv('Sonar') {
+        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+      }
+    }
+  }
 
     stage('Build') {
       steps {
@@ -78,12 +78,12 @@ stages{
   }
   
   post {
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-            mail(to: 'felipe.bedoya@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
-        }
+    success {
+      echo 'This will run only if successful'
     }
+    failure {
+      echo 'This will run only if failed'
+      mail(to: 'felipe.bedoya@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
+    }
+  }
 }
