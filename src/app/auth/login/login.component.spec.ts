@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
 
-describe('LoginComponent', () => {
+fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
 
@@ -52,6 +52,15 @@ describe('LoginComponent', () => {
     expect(usuario.hasError(REQUIRED)).toBeTruthy();
     expect(clave.hasError(REQUIRED)).toBeTruthy();
   });
+
+  fit('creacion del formulario de login', () => {
+    const usuario = component.formularioLogin.controls[USUARIO];
+    const clave = component.formularioLogin.controls[CLAVE];
+    usuario.setValue('');
+    clave.setValue('');
+    component.crearFormulario();
+    expect(component.formularioLogin.valid).toBeFalsy();
+  })
 
 
   /*fit('login invalid ', () => {

@@ -14,7 +14,6 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
-import { AuthService } from './service/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 
 

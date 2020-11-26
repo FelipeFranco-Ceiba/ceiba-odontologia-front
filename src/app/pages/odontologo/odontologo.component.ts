@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Odontologo } from 'src/app/models/odontologo.model';
-import { DetalleCitasFormularioComponent } from '../detalle-citas/detalle-citas-formulario/detalle-citas-formulario.component';
 import { OdontologiaService } from '../services/odontologia.service';
 import { OdontologoFormularioComponent } from './odontologo-formulario/odontologo-formulario.component';
 

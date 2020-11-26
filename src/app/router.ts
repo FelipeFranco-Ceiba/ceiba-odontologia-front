@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component';
-import { OdontologoComponent } from './pages/odontologo/odontologo.component';
 import { AuthRoutingModule } from './auth/auth.routing';
 import { PagesRoutingModule } from './pages/pages.routing';
 
