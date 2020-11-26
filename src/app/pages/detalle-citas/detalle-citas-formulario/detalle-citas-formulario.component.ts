@@ -9,6 +9,7 @@ import { ClienteService } from '../../services/cliente.service';
 import { DetalleCitaService } from '../../services/detalle-cita.service';
 import { OdontologiaService } from '../../services/odontologia.service';
 import { TransformDetalleCita } from '../../utility/transform/transformarDetalleCitaToBack';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-detalle-citas-formulario',
@@ -25,15 +26,15 @@ export class DetalleCitasFormularioComponent implements OnInit {
   public detalleCitaFomulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
-              private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
-              private readonly detalleCitaService: DetalleCitaService,
-              private readonly odontologoService: OdontologiaService,
-              private readonly clienteService: ClienteService,
-              private readonly authService: AuthService,
-              @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
-      this.detalleCita = data;
-      console.log('SI LLEGO INFO', this.detalleCita);
-    }
+    private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
+    private readonly detalleCitaService: DetalleCitaService,
+    private readonly odontologoService: OdontologiaService,
+    private readonly clienteService: ClienteService,
+    private readonly authService: AuthService,
+    @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
+    this.detalleCita = data;
+    console.log('SI LLEGO INFO', this.detalleCita);
+  }
 
   ngOnInit(): void {
     this.crearFormulario();
@@ -66,7 +67,7 @@ export class DetalleCitasFormularioComponent implements OnInit {
 
   cargarOdontologos(): void {
     this.odontologoService.consultarOdontologos()
-    .subscribe(listaOdontologo => this.odontologos = listaOdontologo);
+      .subscribe(listaOdontologo => this.odontologos = listaOdontologo);
   }
 
   cargarCliente(): void {
@@ -98,14 +99,19 @@ export class DetalleCitasFormularioComponent implements OnInit {
     detalleCitaForm.login = detalleCita.login;
     this.detalleCitaService.actualizarDetalleCita(
       TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCitaForm)
-      ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
+    ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
   }
 
   crear(detalleCita: InformacionCompletaDetalleCita): void {
     detalleCita.login = this.authService.getUsuarioLogueado;
     this.detalleCitaService.guardarDetalleCita(
       TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCita)
-      ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
+    ).subscribe(() => {
+      this.detalleCitaService.notificarEstadoDetalleCita.emit();
+    }, (error) => {
+      console.log('QUE PASOOOOO', error.error);
+      Swal.fire('Error', error.error.mensaje, 'error')
+    });
   }
 
   save(): void {

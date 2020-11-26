@@ -32,4 +32,8 @@ export class DetalleCitaService {
     return this.httpCliente.put<InformacionCompletaDetalleCita>(`${environment.endpoint}${this.sufix}`, detalleCita, {headers});
   }
 
+  eliminarDetalleCita(idDetalleCita: number): Observable<any> {
+    return this.httpCliente.delete(`${environment.endpoint}${this.sufix}/${idDetalleCita}`);
+  }
+
 }

@@ -10,8 +10,8 @@
                 <mat-option matInput *ngFor="let odontologo of odontologos" [value]="odontologo">{{odontologo.nombres}} {{odontologo.apellidos}}</mat-option>
             </mat-select>
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="hasError('nombresOdontologo', 'required')">Los <strong>Nombres Odontologo</strong> son
-                obligatorios
+            <mat-error *ngIf="hasError('nombresOdontologo', 'required')">
+                Seleccione un odontologo
             </mat-error>
         </mat-form-field>
 
@@ -21,8 +21,8 @@
                 <mat-option matInput *ngFor="let cliente of clientes" [value]="cliente">{{cliente.nombres}} {{cliente.apellidos}}</mat-option>
             </mat-select>
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="hasError('nombresCliente', 'required')">Los <strong>Nombres Odontologo</strong> son
-                obligatorios
+            <mat-error *ngIf="hasError('nombresCliente', 'required')">
+                Seleccione un cliente
             </mat-error>
         </mat-form-field>
 
@@ -35,10 +35,9 @@
 
     <div class="col-md-3">
         <mat-form-field appearance="outline" class="example-full-width">
-            <mat-label>Apelldios:</mat-label>
+            <mat-label>Timepo (horas):</mat-label>
             <input matInput placeholder="Apellidos" [formControlName]="'horaCita'" name="horaCita">
-            <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="hasError('horaCita', 'required')">Los <strong>Apellidos</strong> son obligatorios
+            <mat-error *ngIf="hasError('horaCita', 'required')">El <strong>Tiempo</strong> es obligatorio
             </mat-error>
         </mat-form-field>
         <!--<mat-form-field appearance="outline" class="example-full-width">
@@ -50,11 +49,11 @@
         </mat-form-field>-->
 
         <mat-form-field appearance="outline">
-            <mat-label>Fecha de Ingreso:</mat-label>
+            <mat-label>Fecha de la Cita:</mat-label>
             <input matInput [matDatepicker]="myDatepicker" [formControlName]="'fechaCita'" name="fechaCita">
             <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #myDatepicker></mat-datepicker>
-            <mat-error *ngIf="hasError('fechaCita', 'required')">La <strong>Fecha de Ingreso</strong> es obligatoria
+            <mat-error *ngIf="hasError('fechaCita', 'required')">La <strong>Fecha de la Cita</strong> es obligatoria
             </mat-error>
         </mat-form-field>
     </div>

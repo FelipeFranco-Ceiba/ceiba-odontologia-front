@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
 import { DetalleCitaService } from '../services/detalle-cita.service';
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario/detalle-citas-formulario.component';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-detalle-citas',
@@ -15,7 +16,7 @@ export class DetalleCitasComponent implements OnInit {
   listaDetalleCitas: InformacionCompletaDetalleCita[];
 
   constructor(private readonly detalleCitaService: DetalleCitaService,
-              private readonly dialog: MatDialog) { }
+    private readonly dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarInformacionDetalleCita();
@@ -43,5 +44,14 @@ export class DetalleCitasComponent implements OnInit {
   }
 
   eliminar(element: InformacionCompletaDetalleCita): void {
+    if (element && element.idDetalleCita) {
+      this.detalleCitaService.eliminarDetalleCita(element.idDetalleCita)
+        .subscribe(() => {
+          Swal.fire('Exito', 'Se elimino correctamente!', 'success');
+          this.detalleCitaService.notificarEstadoDetalleCita.emit();
+        });
+    } else {
+      Swal.fire('Error', 'No se pudo eliminar el detalle de la cita', 'error');
+    }
   }
 }
