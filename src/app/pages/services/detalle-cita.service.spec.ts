@@ -14,7 +14,7 @@ describe('DetalleCitaService', () => {
       imports: [HttpClientTestingModule, HttpClientModule],
       providers: [DetalleCitaService]
     });
-    
+
     service = TestBed.inject(DetalleCitaService);
     httpMock = TestBed.inject(HttpTestingController);
     httpClient = TestBed.inject(HttpClient);
