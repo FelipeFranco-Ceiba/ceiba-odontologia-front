@@ -16,7 +16,7 @@ export class DetalleCitasComponent implements OnInit {
   listaDetalleCitas: InformacionCompletaDetalleCita[];
 
   constructor(private readonly detalleCitaService: DetalleCitaService,
-    private readonly dialog: MatDialog) { }
+              private readonly dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarInformacionDetalleCita();

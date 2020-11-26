@@ -26,12 +26,12 @@ export class DetalleCitasFormularioComponent implements OnInit {
   public detalleCitaFomulario: FormGroup;
 
   constructor(private readonly fb: FormBuilder,
-    private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
-    private readonly detalleCitaService: DetalleCitaService,
-    private readonly odontologoService: OdontologiaService,
-    private readonly clienteService: ClienteService,
-    private readonly authService: AuthService,
-    @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
+              private dialogRef: MatDialogRef<DetalleCitasFormularioComponent>,
+              private readonly detalleCitaService: DetalleCitaService,
+              private readonly odontologoService: OdontologiaService,
+              private readonly clienteService: ClienteService,
+              private readonly authService: AuthService,
+              @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
     this.detalleCita = data;
     console.log('SI LLEGO INFO', this.detalleCita);
   }
@@ -110,7 +110,7 @@ export class DetalleCitasFormularioComponent implements OnInit {
       this.detalleCitaService.notificarEstadoDetalleCita.emit();
     }, (error) => {
       console.log('QUE PASOOOOO', error.error);
-      Swal.fire('Error', error.error.mensaje, 'error')
+      Swal.fire('Error', error.error.mensaje, 'error');
     });
   }
 
