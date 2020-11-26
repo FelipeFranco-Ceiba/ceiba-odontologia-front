@@ -44,7 +44,7 @@ describe('LoginComponent', () => {
         component.ngOnInit();
         fixture.detectChanges();
         service = TestBed.inject(AuthService);
-      })
+      });
   });
 
   beforeEach(() => {
@@ -109,7 +109,7 @@ describe('LoginComponent', () => {
   it('Se ejecuta el metodo login cuando los campos del formulario son ' +
     'validos y el usuario esta registrado, debe redireccionar a detalleCita error', fakeAsync(() => {
       const informacionLogin: Usuario = { idLogin: 1, usuario: 'Felipe', clave: 'Franco' };
-      const servicioLogin = spyOn(service, 'login').and.returnValue(of(false))
+      const servicioLogin = spyOn(service, 'login').and.returnValue(of(false));
       component.formularioLogin.patchValue(informacionLogin);
       component.login();
 

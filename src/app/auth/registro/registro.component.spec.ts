@@ -68,5 +68,5 @@ describe('RegistroComponent', () => {
       component.formularioLogin.patchValue(informacionLogin);
       component.guardarLogin();
       expect(servicioLogin.calls.any()).toEqual(true);
-    })
+    });
 });
