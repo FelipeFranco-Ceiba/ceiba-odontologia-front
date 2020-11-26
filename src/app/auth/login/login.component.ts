@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private readonly fb: FormBuilder,
               private readonly authService: AuthService,
-              private readonly router: Router) { }
+              public readonly router: Router) { }
 
   ngOnInit(): void {
     this.crearFormulario();
