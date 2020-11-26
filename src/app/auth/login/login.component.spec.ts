@@ -60,7 +60,7 @@ fdescribe('LoginComponent', () => {
     clave.setValue('');
     component.crearFormulario();
     expect(component.formularioLogin.valid).toBeFalsy();
-  })
+  });
 
 
   /*fit('login invalid ', () => {
