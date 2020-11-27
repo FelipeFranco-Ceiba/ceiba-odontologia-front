@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
 import { DetalleCitaService } from '../services/detalle-cita.service';
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario/detalle-citas-formulario.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-detalle-citas',
   templateUrl: './detalle-citas.component.html',
   styleUrls: ['./detalle-citas.component.css']
 })
-export class DetalleCitasComponent implements OnInit {
+export class DetalleCitasComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription;
   displayedColumns: string[] = ['nombresOdontologo', 'apellidosOdontologo', 'nombresCliente', 'apellidosCliente', 'horaCita', 'fechaCita', 'valorCita', 'accion'];
   listaDetalleCitas: InformacionCompletaDetalleCita[];
 
@@ -24,7 +26,7 @@ export class DetalleCitasComponent implements OnInit {
   }
 
   cargarInformacionDetalleCita(): void {
-    this.detalleCitaService.consultarDetalleCita().subscribe(detalleCitas => {
+    this.subscription = this.detalleCitaService.consultarDetalleCita().subscribe(detalleCitas => {
       console.log(detalleCitas);
       this.listaDetalleCitas = detalleCitas;
     });
@@ -45,7 +47,7 @@ export class DetalleCitasComponent implements OnInit {
 
   eliminar(element: InformacionCompletaDetalleCita): void {
     if (element && element.idDetalleCita) {
-      this.detalleCitaService.eliminarDetalleCita(element.idDetalleCita)
+      this.subscription = this.detalleCitaService.eliminarDetalleCita(element.idDetalleCita)
         .subscribe(() => {
           Swal.fire('Exito', 'Se elimino correctamente!', 'success');
           this.detalleCitaService.notificarEstadoDetalleCita.emit();
@@ -53,5 +55,10 @@ export class DetalleCitasComponent implements OnInit {
     } else {
       Swal.fire('Error', 'No se pudo eliminar el detalle de la cita', 'error');
     }
+  }
+
+  ngOnDestroy(): void {
+    console.log('DESTRUIR');
+    this.subscription.unsubscribe();
   }
 }

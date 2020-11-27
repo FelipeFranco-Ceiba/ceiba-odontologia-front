@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/auth/service/auth.service';
@@ -10,14 +10,16 @@ import { DetalleCitaService } from '../../services/detalle-cita.service';
 import { OdontologiaService } from '../../services/odontologia.service';
 import { TransformDetalleCita } from '../../utility/transform/transformarDetalleCitaToBack';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-detalle-citas-formulario',
   templateUrl: './detalle-citas-formulario.component.html',
   styleUrls: ['./detalle-citas-formulario.component.css']
 })
-export class DetalleCitasFormularioComponent implements OnInit {
+export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription;
   detalleCita: InformacionCompletaDetalleCita;
   titulo: string;
   odontologos: Odontologo[];
@@ -66,12 +68,12 @@ export class DetalleCitasFormularioComponent implements OnInit {
   }
 
   cargarOdontologos(): void {
-    this.odontologoService.consultarOdontologos()
+    this.subscription = this.odontologoService.consultarOdontologos()
       .subscribe(listaOdontologo => this.odontologos = listaOdontologo);
   }
 
   cargarCliente(): void {
-    this.clienteService.consultarClientes().subscribe(listaCliente => this.clientes = listaCliente);
+    this.subscription = this.clienteService.consultarClientes().subscribe(listaCliente => this.clientes = listaCliente);
   }
 
   odontologoSeleccionado(o2: Odontologo, o1: Odontologo): boolean {
@@ -97,14 +99,14 @@ export class DetalleCitasFormularioComponent implements OnInit {
   actualizar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita: InformacionCompletaDetalleCita): void {
     detalleCitaForm.idDetalleCita = detalleCita.idDetalleCita;
     detalleCitaForm.login = detalleCita.login;
-    this.detalleCitaService.actualizarDetalleCita(
+    this.subscription = this.detalleCitaService.actualizarDetalleCita(
       TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCitaForm)
     ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
   }
 
   crear(detalleCita: InformacionCompletaDetalleCita): void {
     detalleCita.login = this.authService.getUsuarioLogueado;
-    this.detalleCitaService.guardarDetalleCita(
+    this.subscription = this.detalleCitaService.guardarDetalleCita(
       TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCita)
     ).subscribe(() => {
       this.detalleCitaService.notificarEstadoDetalleCita.emit();
@@ -128,4 +130,9 @@ export class DetalleCitasFormularioComponent implements OnInit {
   public hasError(controlName: string, errorName: string): boolean {
     return this.detalleCitaFomulario.controls[controlName].hasError(errorName);
   }
+
+  ngOnDestroy() {
+    console.log('DESTRUIR FORMULARIO');
+    this.subscription.unsubscribe()
+}
 }

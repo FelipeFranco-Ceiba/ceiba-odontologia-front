@@ -4,6 +4,7 @@ import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cliente',
@@ -12,6 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class ClienteComponent implements OnInit {
 
+  subscription: Subscription;
   displayedColumns: string[] = ['nombres', 'apellidos', 'accion'];
   public listaClientes: Cliente[];
 
@@ -24,7 +26,7 @@ export class ClienteComponent implements OnInit {
   }
 
   cargarInformacionCliente(): void {
-    this.clienteService.consultarClientes().subscribe(clientes => {
+    this.subscription = this.clienteService.consultarClientes().subscribe(clientes => {
       console.log(clientes);
       this.listaClientes = clientes;
     });
@@ -46,12 +48,17 @@ export class ClienteComponent implements OnInit {
   eliminar(element: Cliente): void {
     console.log(element.detalleCitas.length);
     if (!element.detalleCitas || element.detalleCitas.length === 0) {
-      this.clienteService.eliminarCliente(element.idCliente).subscribe(() => {
+      this.subscription = this.clienteService.eliminarCliente(element.idCliente).subscribe(() => {
         Swal.fire('Exito', 'se elimino correctamete!', 'success');
         this.clienteService.notificarEstadoCliente.emit();
       });
     } else {
       Swal.fire('Error', 'No se puede eliminar el cliente ya que tiene citas creadas', 'error');
     }
+  }
+
+  ngOnDestroy() {
+    console.log('DESTRUIR')
+    this.subscription.unsubscribe();
   }
 }

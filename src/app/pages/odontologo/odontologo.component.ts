@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { Odontologo } from 'src/app/models/odontologo.model';
 import { OdontologiaService } from '../services/odontologia.service';
 import { OdontologoFormularioComponent } from './odontologo-formulario/odontologo-formulario.component';
@@ -11,6 +12,7 @@ import { OdontologoFormularioComponent } from './odontologo-formulario/odontolog
 })
 export class OdontologoComponent implements OnInit {
 
+  subscription: Subscription;
   displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado', 'accion'];
   listaOdontologos: Odontologo[];
 
@@ -24,7 +26,7 @@ export class OdontologoComponent implements OnInit {
   }
 
   cargarInformacionOdontologo(): void {
-    this.odontologiaService.consultarOdontologos().subscribe(odontologos => {
+    this.subscription = this.odontologiaService.consultarOdontologos().subscribe(odontologos => {
       console.log(odontologos);
       this.listaOdontologos = odontologos;
     });
@@ -44,8 +46,13 @@ export class OdontologoComponent implements OnInit {
   }
 
   eliminar(element: Odontologo): void {
-    this.odontologiaService.eliminarOdontologo(element.idOdontologo).subscribe(() => {
+    this.subscription = this.odontologiaService.eliminarOdontologo(element.idOdontologo).subscribe(() => {
       this.odontologiaService.notificarEstadoOdontologoActualizado.emit();
     });
+  }
+
+  ngOnDestroy() {
+    console.log('DESTRUIR');
+    this.subscription.unsubscribe();
   }
 }
