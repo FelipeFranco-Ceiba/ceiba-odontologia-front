@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css']
 })
-export class ClienteComponent implements OnInit {
+export class ClienteComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   displayedColumns: string[] = ['nombres', 'apellidos', 'accion'];
@@ -57,8 +57,7 @@ export class ClienteComponent implements OnInit {
     }
   }
 
-  ngOnDestroy() {
-    console.log('DESTRUIR')
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

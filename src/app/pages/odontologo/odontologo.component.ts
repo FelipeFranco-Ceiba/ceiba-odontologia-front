@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Odontologo } from 'src/app/models/odontologo.model';
@@ -10,7 +10,7 @@ import { OdontologoFormularioComponent } from './odontologo-formulario/odontolog
   templateUrl: './odontologo.component.html',
   styleUrls: ['./odontologo.component.css']
 })
-export class OdontologoComponent implements OnInit {
+export class OdontologoComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   displayedColumns: string[] = ['nombres', 'apellidos', 'fechaIngreso', 'estado', 'accion'];
@@ -51,8 +51,7 @@ export class OdontologoComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    console.log('DESTRUIR');
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

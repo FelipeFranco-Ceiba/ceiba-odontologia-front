@@ -131,8 +131,7 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     return this.detalleCitaFomulario.controls[controlName].hasError(errorName);
   }
 
-  ngOnDestroy() {
-    console.log('DESTRUIR FORMULARIO');
-    this.subscription.unsubscribe()
-}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
