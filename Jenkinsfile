@@ -4,17 +4,14 @@ pipeline {
     label 'Slave_Induccion'
   }
 
-  //Opciones específicas de Pipeline dentro del Pipeline
+  triggers {
+    pollSCM('@hourly')
+	}
+  
   options {
-    buildDiscarder(logRotator(numToKeepStr: '3'))
-    disableConcurrentBuilds()
-  }
-
-  //Una sección que define las herramientas “preinstaladas” en Jenkins
-  tools {
-    jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle5.6_Centos' //Preinstalada en la Configuración del Master
-  }
+		buildDiscarder(logRotator(numToKeepStr: '5'))
+		disableConcurrentBuilds()
+	}
 
 stages{
 
@@ -37,20 +34,19 @@ stages{
     }
   }
 
-    stage('NPM Install') {
-      steps{
-        echo "------------>Compile<------------"
-        withEnv(['NPM_CONFIG_LOGLEVEL=warn']) {
-          sh 'npm install'
-		    }
+    stage('compilar '){
+      steps {
+        echo '------------>Install and Build<------------'
+        sh 'npm i'
+        sh 'npm run build'					
       }
     }
-
-    stage('Unit Tests') {
-      steps{
-        echo "------------>Unit Tests<------------"
-        sh 'ng test --browsers ChromeHeadless --progress=false --watch false --code-coverage'
-      }
+    
+    stage('test '){
+        steps {
+          echo '------------>Unit Tests<------------'
+          sh 'npm test'					
+			}
     }
 
     stage('Lint') {
@@ -60,11 +56,11 @@ stages{
       }
     }
 
-	stage('Static Code Analysis') {
+	stage('Sonar Analysis'){
     steps{
-      echo '------------>Análisis de código estático<------------'
-      withSonarQubeEnv('Sonar') {
-        sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+      echo '------------>Analisis de código estático<------------'
+			withSonarQubeEnv('Sonar') {
+        sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey=ceiba:CeibaOdontologiaFront.felipe.bedoya -Dsonar.projectName=Ceiba-ADNFront(felipe.bedoya) -Dproject.settings=./sonar-project.properties"
       }
     }
   }
@@ -83,7 +79,9 @@ stages{
     }
     failure {
       echo 'This will run only if failed'
-      mail(to: 'felipe.bedoya@ceiba.com.co', subject: "Failed Pipeline:${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
+      mail(to: 'felipe.bedoya@ceiba.com.co',
+      subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
+      body: "Something is wrong with ${env.BUILD_URL}")
     }
   }
 }
