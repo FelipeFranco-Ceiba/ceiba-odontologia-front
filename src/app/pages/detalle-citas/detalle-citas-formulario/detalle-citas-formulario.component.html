@@ -30,7 +30,7 @@
 
     <div class="col-md-3">
 
-    
+
     </div>
 
     <div class="col-md-3">
@@ -38,6 +38,8 @@
             <mat-label>Timepo (horas):</mat-label>
             <input matInput placeholder="Apellidos" [formControlName]="'horaCita'" name="horaCita">
             <mat-error *ngIf="hasError('horaCita', 'required')">El <strong>Tiempo</strong> es obligatorio
+            </mat-error>
+            <mat-error *ngIf="hasError('horaCita', 'pattern')">Solo se permiten valores numericos
             </mat-error>
         </mat-form-field>
         <!--<mat-form-field appearance="outline" class="example-full-width">
@@ -59,7 +61,7 @@
     </div>
 
     <div class="col-md-3">
-        
+
     </div>
 
 

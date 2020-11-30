@@ -49,7 +49,7 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     this.detalleCitaFomulario = this.fb.group({
       nombresOdontologo: ['', Validators.required],
       nombresCliente: ['', Validators.required],
-      horaCita: ['', Validators.required],
+      horaCita: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       valorCita: ['35000', [Validators.required]],
       fechaCita: ['', Validators.required],
     });
@@ -76,12 +76,12 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     this.subscription = this.clienteService.consultarClientes().subscribe(listaCliente => this.clientes = listaCliente);
   }
 
-  odontologoSeleccionado(o2: Odontologo, o1: Odontologo): boolean {
-    return o1.idOdontologo === o2.idOdontologo ? true : false;
+  odontologoSeleccionado(odontologoSeleccionado: Odontologo, o1: Odontologo): boolean {
+    return o1.idOdontologo === odontologoSeleccionado.idOdontologo ? true : false;
   }
 
-  clienteSeleccionado(o2: Cliente, o1: Cliente): boolean {
-    return o1.idCliente === o2.idCliente ? true : false;
+  clienteSeleccionado(clienteSeleccionado: Cliente, o1: Cliente): boolean {
+    return o1.idCliente === clienteSeleccionado.idCliente ? true : false;
   }
 
   actualizarOGuardar(detalleCitaForm: InformacionCompletaDetalleCita, detalleCita?: InformacionCompletaDetalleCita): void {

@@ -7,6 +7,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalStorageService } from 'ngx-webstorage';
 import { of } from 'rxjs';
+import { Cliente } from 'src/app/models/cliente.model';
+import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
+import { Odontologo } from 'src/app/models/odontologo.model';
+import { Usuario } from 'src/app/models/usuario.model';
 import { DetalleCitaService } from '../../services/detalle-cita.service';
 
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario.component';
@@ -50,5 +54,41 @@ describe('DetalleCitasFormularioComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('El formulario es invalido cuando hay al menos un campo sin diligenciar', () => {
+    component.detalleCitaFomulario.controls.nombresOdontologo.setValue('Felipe');
+    component.detalleCitaFomulario.controls.nombresCliente.setValue('Juan');
+    component.detalleCitaFomulario.controls.horaCita.setValue(2);
+    component.detalleCitaFomulario.controls.fechaCita.setValue('');
+
+    expect(component.detalleCitaFomulario.valid).toBeFalsy();
+  });
+
+  it('El formulario es invalido cuando hay al menos un campo sin diligenciar', () => {
+    component.detalleCitaFomulario.controls.nombresOdontologo.setValue('Felipe');
+    component.detalleCitaFomulario.controls.nombresCliente.setValue('Juan');
+    component.detalleCitaFomulario.controls.horaCita.setValue(2);
+    component.detalleCitaFomulario.controls.fechaCita.setValue('30/11/2020');
+
+    expect(component.detalleCitaFomulario.valid).toBeTruthy();
+  });
+
+  it('Cuando se ejecuta el metodo cargarFormulario() y no existe informacion del detalle de la cita, debe mostrar el titulo CREAR', () => {
+    component.detalleCita = null;
+
+    component.cargarFormulario();
+    expect(component.titulo).toEqual('Crear')
+  });
+
+  it('Cuando se ejecuta el metodo cargarFormulario() y existe informacion del detalle de la cita, debe mostrar el titulo EDITAR', () => {
+    const cliente: Cliente = {nombres: 'Juan', apellidos: 'Bedoya'};
+    const odontologo: Odontologo = {nombres: 'Juan', apellidos: 'Bedoya', fechaIngreso: new Date('2020-11-24T00:00:00.000-05:00'), estado: true };
+    const login: Usuario = {usuario: 'pipe', clave: 'franco'};
+    const detalleCita: InformacionCompletaDetalleCita = {fechaCita: new Date('2020-11-24T00:00:00.000-05:00'), horaCita: 3, valorCita: 35000, cliente, odontologo, login};
+    component.detalleCita = detalleCita;
+
+    component.cargarFormulario();
+    expect(component.titulo).toEqual('Editar')
   });
 });
