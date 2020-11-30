@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 import { of } from 'rxjs';
 import { DetalleCitaService } from '../services/detalle-cita.service';
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario/detalle-citas-formulario.component';
@@ -24,7 +26,9 @@ describe('DetalleCitasComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCardModule,
+        MatTableModule
       ]
     })
     .compileComponents();

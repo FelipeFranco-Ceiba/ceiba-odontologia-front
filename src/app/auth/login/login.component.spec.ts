@@ -10,6 +10,11 @@ import { of } from 'rxjs';
 import { AuthServiceMock } from '../service/auth.service.mock';
 import { Usuario } from 'src/app/models/usuario.model';
 import { DetalleCitasComponent } from 'src/app/pages/detalle-citas/detalle-citas.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -32,6 +37,11 @@ describe('LoginComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         FormsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([
           { path: 'detalleCitas', component: DetalleCitasComponent }

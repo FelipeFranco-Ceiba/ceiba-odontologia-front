@@ -1,7 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,7 +43,12 @@ describe('DetalleCitasFormularioComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         MatSelectModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
       ]
     })
     .compileComponents();
@@ -60,16 +70,17 @@ describe('DetalleCitasFormularioComponent', () => {
     component.detalleCitaFomulario.controls.nombresOdontologo.setValue('Felipe');
     component.detalleCitaFomulario.controls.nombresCliente.setValue('Juan');
     component.detalleCitaFomulario.controls.horaCita.setValue(2);
-    component.detalleCitaFomulario.controls.fechaCita.setValue('');
+    component.detalleCitaFomulario.controls.fechaCita.setValue(undefined);
 
     expect(component.detalleCitaFomulario.valid).toBeFalsy();
   });
 
-  it('El formulario es invalido cuando hay al menos un campo sin diligenciar', () => {
+  it('El formulario es valido cuando se diligencia todos los campos', () => {
     component.detalleCitaFomulario.controls.nombresOdontologo.setValue('Felipe');
     component.detalleCitaFomulario.controls.nombresCliente.setValue('Juan');
     component.detalleCitaFomulario.controls.horaCita.setValue(2);
-    component.detalleCitaFomulario.controls.fechaCita.setValue('30/11/2020');
+    component.detalleCitaFomulario.controls.fechaCita.setValue(new Date('2020-11-24T00:00:00.000-05:00'));
+    component.detalleCitaFomulario.controls.valorCita.setValue(35000);
 
     expect(component.detalleCitaFomulario.valid).toBeTruthy();
   });

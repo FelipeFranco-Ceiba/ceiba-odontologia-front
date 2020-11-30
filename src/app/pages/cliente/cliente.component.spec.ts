@@ -2,11 +2,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ClienteService } from '../services/cliente.service';
-import { Cliente } from '../../models/cliente.model';
 
 import { ClienteComponent } from './cliente.component';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import { of } from 'rxjs';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 describe('ClienteComponent', () => {
   let component: ClienteComponent;
@@ -25,7 +26,9 @@ describe('ClienteComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        MatDialogModule
+        MatDialogModule,
+        MatCardModule,
+        MatTableModule
       ]
     })
       .compileComponents();

@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component'
     BrowserAnimationsModule,
     MatDividerModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

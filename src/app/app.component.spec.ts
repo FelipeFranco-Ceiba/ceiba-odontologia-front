@@ -7,6 +7,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: []
+
     }).compileComponents();
   });
 

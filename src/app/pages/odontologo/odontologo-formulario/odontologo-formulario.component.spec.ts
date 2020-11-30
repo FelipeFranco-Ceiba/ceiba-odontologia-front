@@ -1,7 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +37,12 @@ describe('OdontologoFormularioComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         MatRadioModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
       ]
     })
     .compileComponents();

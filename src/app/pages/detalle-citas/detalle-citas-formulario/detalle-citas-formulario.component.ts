@@ -35,7 +35,6 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
               private readonly authService: AuthService,
               @Inject(MAT_DIALOG_DATA) data: InformacionCompletaDetalleCita) {
     this.detalleCita = data;
-    console.log('SI LLEGO INFO', this.detalleCita);
   }
 
   ngOnInit(): void {
@@ -56,7 +55,6 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
   }
 
   cargarFormulario(): void {
-    console.log('SII ENTRO', this.detalleCita);
     if (this.detalleCita) {
       this.titulo = 'Editar';
       this.detalleCitaFomulario.get('nombresOdontologo').setValue(this.detalleCita.odontologo);
@@ -111,13 +109,11 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.detalleCitaService.notificarEstadoDetalleCita.emit();
     }, (error) => {
-      console.log('QUE PASOOOOO', error.error);
       Swal.fire('Error', error.error.mensaje, 'error');
     });
   }
 
   save(): void {
-    console.log('POR QUE ESTA MALA', this.detalleCita);
     const detalleCitaForm = this.detalleCitaFomulario.getRawValue();
     this.actualizarOGuardar(detalleCitaForm, this.detalleCita);
     this.dialogRef.close(this.detalleCita);

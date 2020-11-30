@@ -39,13 +39,10 @@ export class OdontologoFormularioComponent implements OnInit {
   }
 
   cargarFormulario(): void {
-    console.log('SII ENTRO', this.odontologo);
     if (this.odontologo) {
-      console.log('Editar');
       this.titulo = 'Editar';
       this.odontologoFormulario.patchValue(this.odontologo);
     } else {
-      console.log('Crear');
       this.titulo = 'Crear';
     }
   }
