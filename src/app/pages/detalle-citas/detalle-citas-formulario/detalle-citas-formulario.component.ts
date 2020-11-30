@@ -48,7 +48,7 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     this.detalleCitaFomulario = this.fb.group({
       nombresOdontologo: ['', Validators.required],
       nombresCliente: ['', Validators.required],
-      horaCita: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      horaCita: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       valorCita: ['35000', [Validators.required]],
       fechaCita: ['', Validators.required],
     });

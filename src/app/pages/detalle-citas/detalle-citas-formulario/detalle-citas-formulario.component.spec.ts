@@ -89,17 +89,19 @@ describe('DetalleCitasFormularioComponent', () => {
     component.detalleCita = null;
 
     component.cargarFormulario();
-    expect(component.titulo).toEqual('Crear')
+    expect(component.titulo).toEqual('Crear');
   });
 
   it('Cuando se ejecuta el metodo cargarFormulario() y existe informacion del detalle de la cita, debe mostrar el titulo EDITAR', () => {
     const cliente: Cliente = {nombres: 'Juan', apellidos: 'Bedoya'};
-    const odontologo: Odontologo = {nombres: 'Juan', apellidos: 'Bedoya', fechaIngreso: new Date('2020-11-24T00:00:00.000-05:00'), estado: true };
+    const odontologo: Odontologo =
+      {nombres: 'Juan', apellidos: 'Bedoya', fechaIngreso: new Date('2020-11-24T00:00:00.000-05:00'), estado: true };
     const login: Usuario = {usuario: 'pipe', clave: 'franco'};
-    const detalleCita: InformacionCompletaDetalleCita = {fechaCita: new Date('2020-11-24T00:00:00.000-05:00'), horaCita: 3, valorCita: 35000, cliente, odontologo, login};
+    const detalleCita: InformacionCompletaDetalleCita =
+      {fechaCita: new Date('2020-11-24T00:00:00.000-05:00'), horaCita: 3, valorCita: 35000, cliente, odontologo, login};
     component.detalleCita = detalleCita;
 
     component.cargarFormulario();
-    expect(component.titulo).toEqual('Editar')
+    expect(component.titulo).toEqual('Editar');
   });
 });

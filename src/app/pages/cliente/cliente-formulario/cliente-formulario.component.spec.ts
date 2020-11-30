@@ -71,7 +71,7 @@ describe('ClienteFormularioComponent', () => {
     component.cliente = null;
 
     component.cargarFormulario();
-    expect(component.titulo).toEqual('Crear')
+    expect(component.titulo).toEqual('Crear');
   });
 
   it('Cuando se ejecuta el metodo cargarFormulario() y existe informacion del cliente, debe mostrar el titulo EDITAR', () => {
@@ -79,7 +79,7 @@ describe('ClienteFormularioComponent', () => {
     component.cliente = cliente;
 
     component.cargarFormulario();
-    expect(component.titulo).toEqual('Editar')
+    expect(component.titulo).toEqual('Editar');
     expect(component.clienteFormulario.getRawValue()).toEqual(cliente);
   });
 
