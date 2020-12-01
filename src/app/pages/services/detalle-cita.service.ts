@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
+import { InformacionCompletaDetalleCita } from 'src/app/shared/models/detalle-cita.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

@@ -1,16 +1,18 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth/service/auth.service';
-import { Cliente } from 'src/app/models/cliente.model';
-import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
-import { Odontologo } from 'src/app/models/odontologo.model';
+
+
 import { ClienteService } from '../../services/cliente.service';
 import { DetalleCitaService } from '../../services/detalle-cita.service';
 import { OdontologiaService } from '../../services/odontologia.service';
 import { TransformDetalleCita } from '../../utility/transform/transformarDetalleCitaToBack';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Subscription } from 'rxjs';
+import { InformacionCompletaDetalleCita } from 'src/app/shared/models/detalle-cita.model';
+import { Odontologo } from 'src/app/shared/models/odontologo.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
+import { AuthService } from 'src/app/core/service/auth.service';
 
 @Component({
   selector: 'app-detalle-citas-formulario',

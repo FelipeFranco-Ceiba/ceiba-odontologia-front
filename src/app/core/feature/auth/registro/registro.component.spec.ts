@@ -9,9 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LocalStorageService } from 'ngx-webstorage';
 import { of } from 'rxjs';
-import { Usuario } from 'src/app/models/usuario.model';
-import { AuthService } from '../service/auth.service';
-import { AuthServiceMock } from '../service/auth.service.mock';
+import { Usuario } from 'src/app/shared/models/usuario.model';
+import { AuthService } from '../../../service/auth.service';
+import { AuthServiceMock } from '../../../service/auth.service.mock';
 
 import { RegistroComponent } from './registro.component';
 

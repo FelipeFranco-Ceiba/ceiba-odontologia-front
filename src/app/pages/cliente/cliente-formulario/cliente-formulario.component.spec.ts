@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
-import { Cliente } from 'src/app/models/cliente.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
 
 import { ClienteFormularioComponent } from './cliente-formulario.component';

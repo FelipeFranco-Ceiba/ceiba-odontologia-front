@@ -1,4 +1,5 @@
-import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
+import { InformacionCompletaDetalleCita } from 'src/app/shared/models/detalle-cita.model';
+
 
 export class TransformDetalleCita {
 

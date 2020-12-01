@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Odontologo } from 'src/app/models/odontologo.model';
+import { Odontologo } from 'src/app/shared/models/odontologo.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

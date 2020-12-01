@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cliente } from 'src/app/models/cliente.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

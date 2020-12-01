@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './core/feature/auth/auth.module';
 import { AppRoutingModule } from './router';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -14,8 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PagesnotfoundComponent } from './pagesnotfound/pagesnotfound.component';
 import { RouterModule } from '@angular/router';
+import { PagesnotfoundComponent } from './core/feature/pagesnotfound/pagesnotfound.component';
 
 @NgModule({
   declarations: [

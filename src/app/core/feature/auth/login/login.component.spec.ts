@@ -2,19 +2,19 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocalStorageService } from 'ngx-webstorage';
-import { AuthService } from '../service/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
 import { of } from 'rxjs';
-import { AuthServiceMock } from '../service/auth.service.mock';
-import { Usuario } from 'src/app/models/usuario.model';
 import { DetalleCitasComponent } from 'src/app/pages/detalle-citas/detalle-citas.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from '../../../service/auth.service';
+import { AuthServiceMock } from '../../../service/auth.service.mock';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

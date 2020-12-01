@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
 import { DetalleCitaService } from '../services/detalle-cita.service';
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario/detalle-citas-formulario.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Subscription } from 'rxjs';
+import { InformacionCompletaDetalleCita } from 'src/app/shared/models/detalle-cita.model';
 
 @Component({
   selector: 'app-detalle-citas',

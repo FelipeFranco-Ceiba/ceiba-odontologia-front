@@ -1,5 +1,5 @@
 import { Observable, of } from 'rxjs';
-import { Usuario } from 'src/app/models/usuario.model';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 
 
 export class AuthServiceMock {

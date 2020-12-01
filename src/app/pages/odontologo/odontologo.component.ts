@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { Odontologo } from 'src/app/models/odontologo.model';
+import { Odontologo } from 'src/app/shared/models/odontologo.model';
 import { OdontologiaService } from '../services/odontologia.service';
 import { OdontologoFormularioComponent } from './odontologo-formulario/odontologo-formulario.component';
 

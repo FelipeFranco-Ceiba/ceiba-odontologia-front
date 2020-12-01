@@ -5,9 +5,10 @@ import { PagesComponent } from './pages.component';
 import { OdontologoComponent } from './odontologo/odontologo.component';
 import { DetalleCitasComponent } from './detalle-citas/detalle-citas.component';
 import { OdontologoFormularioComponent } from './odontologo/odontologo-formulario/odontologo-formulario.component';
-import { AuthGuard } from '../shared/guard/auth.guard';
+
 import { ClienteFormularioComponent } from './cliente/cliente-formulario/cliente-formulario.component';
 import { ClienteComponent } from './cliente/cliente.component';
+import { AuthGuard } from '../core/guard/auth.guard';
 const routes: Routes = [
     {
         path: 'detalleCitas',

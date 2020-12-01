@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Subscription } from 'rxjs';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 
 @Component({
   selector: 'app-cliente',

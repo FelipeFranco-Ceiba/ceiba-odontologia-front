@@ -1,9 +1,9 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Cliente } from 'src/app/shared/models/cliente.model';
 
 @Component({
   selector: 'app-cliente-formulario',

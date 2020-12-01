@@ -12,10 +12,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalStorageService } from 'ngx-webstorage';
 import { of } from 'rxjs';
-import { Cliente } from 'src/app/models/cliente.model';
-import { InformacionCompletaDetalleCita } from 'src/app/models/detalle-cita.model';
-import { Odontologo } from 'src/app/models/odontologo.model';
-import { Usuario } from 'src/app/models/usuario.model';
+import { Cliente } from 'src/app/shared/models/cliente.model';
+import { InformacionCompletaDetalleCita } from 'src/app/shared/models/detalle-cita.model';
+import { Odontologo } from 'src/app/shared/models/odontologo.model';
+import { Usuario } from 'src/app/shared/models/usuario.model';
 import { DetalleCitaService } from '../../services/detalle-cita.service';
 
 import { DetalleCitasFormularioComponent } from './detalle-citas-formulario.component';

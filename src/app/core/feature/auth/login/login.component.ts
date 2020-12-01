@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../../../service/auth.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formularioLogin.getRawValue()).subscribe(login => {
       this.router.navigateByUrl('/detalleCitas');
     }, (error) => {
-      console.error('Ocurrio un erro: ', error);
+      Swal.fire('Error', error.error.mensaje, 'error');
     });
   }
 
