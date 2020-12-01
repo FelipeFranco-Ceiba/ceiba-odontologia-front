@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit {
         Swal.fire('Exito', 'Se creo el usuario con exito', 'success');
 
       }, (error) => {
-        Swal.fire('Error', error.error.mensaje, 'error')
+        Swal.fire('Error', error.error.mensaje, 'error');
       });
   }
 
