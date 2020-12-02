@@ -1,0 +1,49 @@
+<!--<app-odontologo-formulario [odontologos]="listaOdontologos"></app-odontologo-formulario>-->
+
+<mat-card>
+    <button class="crearOdontologo" mat-stroked-button (click)="editarOCrear()">Crear</button>
+    <table mat-table [dataSource]="listaOdontologos" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombres">
+        <th mat-header-cell *matHeaderCellDef> Nombres </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="apellidos">
+        <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="fechaIngreso">
+        <th mat-header-cell *matHeaderCellDef> Fecha Ingreso </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaIngreso | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.estado | estadoOdontologo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef> Acción </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editarOCrear(element)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="eliminar(element)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-card>
