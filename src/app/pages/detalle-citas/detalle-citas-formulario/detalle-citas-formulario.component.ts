@@ -101,7 +101,11 @@ export class DetalleCitasFormularioComponent implements OnInit, OnDestroy {
     detalleCitaForm.login = detalleCita.login;
     this.subscription = this.detalleCitaService.actualizarDetalleCita(
       TransformDetalleCita.transformDetalleCItaToDetalleCitaBack(detalleCitaForm)
-    ).subscribe(() => this.detalleCitaService.notificarEstadoDetalleCita.emit());
+    ).subscribe(() => {
+      this.detalleCitaService.notificarEstadoDetalleCita.emit()
+    }, (error) => {
+      Swal.fire('Error', error.error.mensaje, 'error');
+    });
   }
 
   crear(detalleCita: InformacionCompletaDetalleCita): void {
